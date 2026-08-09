@@ -1,0 +1,40 @@
+# Key Idea
+- Sort both arrays and pair the smallest price with the smallest discount, largest price with largest discount.
+
+# Complexity
+- Time complexity: $$O(nlogn)$$
+
+- Space complexity: $$O(1)$$
+
+# Code
+```java []
+class Solution {
+    public double minPrice(int[] prices, int[] discounts) {
+        Arrays.sort(prices);
+        Arrays.sort(discounts);
+        double totalPrice = 0;
+
+        int i = prices.length - 1;
+        int j = discounts.length - 1;
+
+        while (i >= 0 && j >= 0) {
+            totalPrice += discountedPrice(prices[i], discounts[j]);
+            i--;
+            j--;
+        }
+
+        while (i >= 0) {
+            totalPrice += prices[i];
+            i--;
+        }
+
+        return totalPrice;
+    }
+
+    private double discountedPrice(int price, int discount) {
+        return (price * (100.0 - discount) / 100.0);
+    }
+}
+```
+
+![upvote.jpg](https://assets.leetcode.com/users/images/460fb58b-9a6c-4214-935b-829e60949626_1786262632.813128.jpeg)
