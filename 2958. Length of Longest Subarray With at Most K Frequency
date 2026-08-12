@@ -1,0 +1,29 @@
+# Complexity
+- Time complexity: $$O(n)$$
+
+- Space complexity: $$O(n)$$
+
+# Code
+```java []
+class Solution {
+    public int maxSubarrayLength(int[] nums, int k) {
+        HashMap<Integer, Integer> freq = new HashMap<>();
+
+        int i = 0;
+        int maxLength = 0;
+
+        for (int j = 0; j < nums.length; j++) {
+            freq.put(nums[j], freq.getOrDefault(nums[j], 0) + 1);
+
+            // Shrink window if frequency exceeds k
+            while (i < j && freq.get(nums[j]) > k) {
+                freq.put(nums[i], freq.getOrDefault(nums[i], 0) - 1);
+                i++;
+            }
+            maxLength = Math.max(maxLength, j - i + 1);
+        }
+
+        return maxLength;
+    }
+}
+```
