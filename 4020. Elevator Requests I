@@ -1,0 +1,21 @@
+# Complexity
+- Time complexity: $$O(n)$$
+
+- Space complexity: $$O(1)$$
+
+# Code
+```java []
+class Solution {
+    public int elevatorRequests(int n, int[] requests) {
+        int time = 0;
+        int currentFloor = 0;
+
+        for (int request : requests) {
+            time += Math.abs(currentFloor - request);
+            currentFloor = request;
+        }
+
+        return time;
+    }
+}
+```
