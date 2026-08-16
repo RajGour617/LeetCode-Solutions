@@ -1,0 +1,13 @@
+# Complexity
+- Time complexity: $$O(1)$$
+
+- Space complexity: $$O(1)$$
+
+# Code
+```java []
+class Solution {
+    public boolean canWinNim(int n) {
+        return (n % 4 == 0) ? false : true;
+    }
+}
+```
