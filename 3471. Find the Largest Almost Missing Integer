@@ -1,0 +1,88 @@
+# Approach 1: Sliding Window
+
+# Complexity
+- Time complexity: $$O(n*k^2)$$
+
+- Space complexity: $$O(1)$$
+
+# Code
+```Java []
+class Solution {
+    public int largestInteger(int[] nums, int k) {
+        int n = nums.length;
+        int res = -1;
+
+        for(int num : nums) {
+            int cnt = 0;
+            for(int i=0;i<=n-k;i++) {
+                for(int j=i;j<i+k;j++) {
+                    if(nums[j]==num) {
+                        cnt++;
+                        break;
+                    }
+                }
+            }
+
+            if(cnt == 1) {
+                res = Math.max(res, num);
+            }
+        }
+
+        return res;
+    }
+}
+```
+---
+
+# Approach 2: Simple Observation
+
+# Complexity
+- Time complexity: $$O(n)$$
+
+- Space complexity: $$O(1)$$
+- 
+# Code
+```java []
+class Solution {
+    public int largestInteger(int[] nums, int k) {
+        int n = nums.length;
+        int maxResult = -1;
+
+        //only one subarray possible. Select the largest element
+        if (k == n) {
+            for (int num : nums) {
+                maxResult = Math.max(maxResult, num);
+            }
+            return maxResult;
+        }
+
+        int[] freq = new int[51];
+        for (int num : nums) {
+            freq[num]++;
+        }
+
+        //every index is one subarray. Find largest element which appears only once
+        if (k == 1) {
+            for (int i = 50; i >= 0; i--) {
+                if (freq[i] == 1) {
+                    return i;
+                }
+            }
+            return -1;
+        }
+
+        //Notice that only the first and last element are going to be the ones which will appear only in one subarray. Others will be part of more than one subarray always
+        if (k > 1 && k < n) {
+            if (freq[nums[0]] == 1) {
+                maxResult = Math.max(maxResult, nums[0]);
+            }
+
+            if (freq[nums[n - 1]] == 1) {
+                maxResult = Math.max(maxResult, nums[n - 1]);
+            }
+        }
+
+        return maxResult;
+    }
+}
+```
