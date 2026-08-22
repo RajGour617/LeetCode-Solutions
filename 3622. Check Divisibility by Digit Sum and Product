@@ -1,0 +1,31 @@
+class Solution {
+    public boolean checkDivisibility(int n) {
+        if (n % (sumOfDigits(n) + productOfDigits(n)) == 0) {
+            return true;
+        }
+
+        return false;
+    }
+
+    private int sumOfDigits(int n) {
+        int sum = 0;
+
+        while (n > 0) {
+            sum += n % 10;
+            n /= 10;
+        }
+
+        return sum;
+    }
+
+    private int productOfDigits(int n) {
+        int product = 1;
+
+        while (n > 0) {
+            product *= n % 10;
+            n /= 10;
+        }
+
+        return product;
+    }
+}
