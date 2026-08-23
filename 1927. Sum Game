@@ -1,0 +1,74 @@
+# Approach
+- Odd number of `?` → Alice wins immediately.
+- Even number of `?` → Calculate the fixed difference and compare it with `9 × (rightQ - leftQ) / 2`.
+
+## Elaborate Final Condition:
+Therefore the core line is:
+
+`return diff != 9 * (rightQ - leftQ) / 2;`
+
+It means:
+
+After considering the fixed digits and the question-mark imbalance, if Bob cannot make the final difference exactly zero, Alice wins.
+
+If:
+
+`(leftSum - rightSum) == 9 * (rightQ - leftQ) / 2`
+
+then Bob can force:
+
+`leftSum == rightSum`
+
+so:
+
+`false`
+
+Otherwise:
+
+`true`
+
+# Complexity
+- Time complexity: $$O(n)$$
+
+- Space complexity: $$O(1)$$
+
+# Code
+```java []
+class Solution {
+    public boolean sumGame(String num) {
+        int n = num.length();
+
+        int leftSum = 0;
+        int rightSum = 0;
+        int leftQ = 0;
+        int rightQ = 0;
+
+        for (int i = 0; i < n / 2; i++) {
+            char ch = num.charAt(i);
+
+            if (ch == '?') {
+                leftQ++;
+            } else {
+                leftSum += ch - '0';
+            }
+        }
+
+        for (int i = n / 2; i < n; i++) {
+            char ch = num.charAt(i);
+
+            if (ch == '?') {
+                rightQ++;
+            } else {
+                rightSum += ch - '0';
+            }
+        }
+
+        // Odd number of '?' means Alice gets one extra turn.
+        if ((leftQ + rightQ) % 2 == 1) {
+            return true;
+        }
+
+        return (leftSum - rightSum) != 9 * (rightQ - leftQ) / 2;
+    }
+}
+```
