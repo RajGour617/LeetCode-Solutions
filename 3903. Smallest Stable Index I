@@ -1,0 +1,36 @@
+# Complexity
+- Time complexity: $$O(n*i)$$
+
+- Space complexity: $$O(1)$$
+
+# Code
+```java []
+class Solution {
+    public int firstStableIndex(int[] nums, int k) {
+
+        for (int i = 0; i < nums.length; i++) {
+            if (findMax(nums, i) - findMin(nums, i) <= k) {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
+    private int findMax(int[] nums, int i) {
+        int max = Integer.MIN_VALUE;
+        for (int j = 0; j <= i; j++) {
+            max = Math.max(max, nums[j]);
+        }
+        return max;
+    }
+
+    private int findMin(int[] nums, int i) {
+        int min = Integer.MAX_VALUE;
+        for (int j = i; j < nums.length; j++) {
+            min = Math.min(min, nums[j]);
+        }
+        return min;
+    }
+}
+```
