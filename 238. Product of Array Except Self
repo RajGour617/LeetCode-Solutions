@@ -1,0 +1,40 @@
+# Complexity
+- Time complexity: $$O(n)$$
+
+- Space complexity: $$O(n)$$
+
+# Code
+```java []
+class Solution {
+    public int[] productExceptSelf(int[] nums) {
+        int totalProduct = 1;
+        int cntZeroes = 0;
+
+        for (int num : nums) {
+            if (num != 0) {
+                totalProduct *= num;
+            } else {
+                cntZeroes++;
+            }
+        }
+
+        int[] res = new int[nums.length];
+
+        for (int i = 0; i < nums.length; i++) {
+            if (cntZeroes == 0) {
+                res[i] = totalProduct / nums[i];
+            } else if (cntZeroes == 1) {
+                if (nums[i] == 0) {
+                    res[i] = totalProduct;
+                } else {
+                    res[i] = 0;
+                }
+            } else {
+                res[i] = 0;
+            }
+        }
+
+        return res;
+    }
+}
+```
