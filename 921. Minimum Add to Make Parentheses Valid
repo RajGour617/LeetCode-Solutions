@@ -1,0 +1,60 @@
+# Approach 1: Using Stack
+
+# Complexity
+- Time complexity: $$O(n)$$
+
+- Space complexity: $$O(n)$$
+
+# Code
+```java []
+class Solution {
+    public int minAddToMakeValid(String s) {
+        int stack_size = 0;
+        int req_open_parenthesis = 0;
+
+        for (char c : s.toCharArray()) {
+            if (c == '(') {
+                stack_size++;
+            } else {
+                if (stack_size == 0) {
+                    req_open_parenthesis++;
+                } else {
+                    stack_size--;
+                }
+            }
+        }
+
+        return stack_size + req_open_parenthesis;
+    }
+}
+```
+
+# Approach 2: Without Using Stack
+
+# Complexity
+- Time complexity: $$O(n)$$
+
+- Space complexity: $$O(1)$$
+
+```Java []
+class Solution {
+    public int minAddToMakeValid(String s) {
+        Stack<Character> st = new Stack<>();
+        int req_open_parenthesis = 0;
+
+        for (char c : s.toCharArray()) {
+            if (c == '(') {
+                st.push(c);
+            } else {
+                if (st.empty()) {
+                    req_open_parenthesis++;
+                } else {
+                    st.pop();
+                }
+            }
+        }
+
+        return st.size() + req_open_parenthesis;
+    }
+}
+```
