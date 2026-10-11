@@ -1,0 +1,21 @@
+# Complexity
+- Time complexity: $$O(n)$$
+- Space complexity: $$O(1)$$
+
+# Code
+```java []
+class Solution {
+    public int sumOfSquares(int[] nums) {
+        int n = nums.length;
+        int sqSum = 0;
+
+        for (int i = 1; i <= n; i++) {
+            if (n % i == 0) {
+                sqSum += (nums[i - 1] * nums[i - 1]);
+            }
+        }
+
+        return sqSum;
+    }
+}
+```
