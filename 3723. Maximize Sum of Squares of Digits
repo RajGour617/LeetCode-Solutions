@@ -1,0 +1,24 @@
+# Complexity
+- Time complexity: $$O(n)$$
+- Space complexity: $$O(1)$$
+
+# Code
+```java []
+class Solution {
+    public String maxSumOfSquares(int num, int sum) {
+        if (sum > num * 9) {
+            return "";
+        }
+
+        StringBuilder res = new StringBuilder(num);
+
+        while (num-- > 0) {
+            int digit = Math.min(9, sum);
+            res.append(digit);
+            sum -= digit;
+        }
+
+        return (sum == 0) ? res.toString() : "";
+    }
+}
+```
