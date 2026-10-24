@@ -1,6 +1,6 @@
 # Complexity
-- Time complexity:
-- Space complexity:
+- Time complexity: O(n)
+- Space complexity: O(1)
 
 # Code
 ```java []
