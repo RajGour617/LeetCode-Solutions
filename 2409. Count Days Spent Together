@@ -1,0 +1,45 @@
+# Complexity
+- Time complexity: $$O(1)$$
+- Space complexity: $$O(1)$$
+
+----------------------------- Java ------------------------------------
+
+class Solution {
+    public int countDaysTogether(String arriveAlice, String leaveAlice, String arriveBob, String leaveBob) {
+        int[] months = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+
+        int aa_Month = Integer.parseInt(arriveAlice.substring(0, 2));
+        int la_Month = Integer.parseInt(leaveAlice.substring(0, 2));
+
+        int ab_Month = Integer.parseInt(arriveBob.substring(0, 2));
+        int lb_Month = Integer.parseInt(leaveBob.substring(0, 2));
+
+        int aa_Day = 0;
+        for (int i = 0; i < aa_Month - 1; i++) {
+            aa_Day += months[i];
+        }
+        aa_Day += Integer.parseInt(arriveAlice.substring(3, 5));
+
+        int la_Day = 0;
+        for (int i = 0; i < la_Month - 1; i++) {
+            la_Day += months[i];
+        }
+        la_Day += Integer.parseInt(leaveAlice.substring(3, 5));
+
+        int ab_Day = 0;
+        for (int i = 0; i < ab_Month - 1; i++) {
+            ab_Day += months[i];
+        }
+        ab_Day += Integer.parseInt(arriveBob.substring(3, 5));
+
+        int lb_Day = 0;
+        for (int i = 0; i < lb_Month - 1; i++) {
+            lb_Day += months[i];
+        }
+        lb_Day += Integer.parseInt(leaveBob.substring(3, 5));
+
+        int days_together =  Math.min(la_Day, lb_Day) - Math.max(aa_Day, ab_Day) + 1;
+
+        return days_together < 0 ? 0 : days_together;
+    }
+}
