@@ -1,0 +1,49 @@
+# Approach 1:
+
+# Complexity
+- Time complexity: O(n)
+- Space complexity: O(1)
+
+# Code
+class Solution {
+    public boolean checkString(String s) {
+        int n = s.length();
+
+        int i = 0;
+        while (i < n - 1) {
+            if (s.charAt(i) == 'b' && s.charAt(i + 1) == 'a') {
+                return false;
+            }
+            i++;
+        }
+
+        return true;
+    }
+}
+
+-----------------------------------------------------------------------------------------
+
+# Approach 2:
+
+# Complexity
+- Time complexity: O(n)
+- Space complexity: O(1)
+
+class Solution {
+    public boolean checkString(String s) {
+        int n = s.length();
+
+        int lastAPos = -1;
+        int firstBPos = n;
+
+        for (int i = 0; i < n; i++) {
+            if (s.charAt(i) == 'a') {
+                lastAPos = i;
+            } else if (s.charAt(i) == 'b' && firstBPos == n) {
+                firstBPos = i;
+            }
+        }
+
+        return lastAPos < firstBPos;
+    }
+}
