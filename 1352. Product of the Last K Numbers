@@ -1,0 +1,20 @@
+# Time Complexity: O(k)
+# Space Complexity: O(n)
+
+class ProductOfNumbers {
+    List<Integer> list = new ArrayList<>();
+
+    public void add(int num) {
+        list.add(num);
+    }
+
+    public int getProduct(int k) {
+        int n = list.size();
+        int prod = 1;
+        for (int i = n - k; i < n; i++) {
+            prod *= list.get(i);
+        }
+            
+        return prod;
+    }
+}
